@@ -1,100 +1,140 @@
 # SOC Home Lab
 
+A personal Security Operations Center (SOC) home lab built to simulate a centralized Windows monitoring environment using Splunk, Sysmon, Windows Event Logs, and Kali Linux for attack simulation.
+
+The lab provides hands-on experience with endpoint telemetry collection, SIEM operations, security event investigation, threat detection, log analysis, detection development, and SOC monitoring workflows.
+
+---
+
 ## Objective
 
-This project documents the setup of a personal Security Operations Center (SOC) home lab built to simulate a centralized Windows monitoring environment. The lab was designed to collect endpoint telemetry, centralize security logs, and provide hands-on experience with SIEM monitoring and log analysis using Splunk as the primary platform.
+The objective of this project was to build a hands-on SOC monitoring environment capable of collecting endpoint telemetry, centralizing Windows security logs, simulating attacker activity, and performing security investigations using Splunk.
+
+The lab was designed to develop practical skills in:
+
+- SIEM monitoring
+- Endpoint visibility
+- Windows log analysis
+- Attack simulation
+- Detection query development
+- Security event investigation
+
+---
+
+## Skills & Technologies
+
+![SIEM](https://img.shields.io/badge/SIEM-Splunk-blue)
+![Endpoint](https://img.shields.io/badge/Endpoint-Sysmon-orange)
+![Windows](https://img.shields.io/badge/OS-Windows-blue)
+![Detection](https://img.shields.io/badge/Detection-SPL-green)
+![Monitoring](https://img.shields.io/badge/Monitoring-Security%20Logs-purple)
+![Attack Simulation](https://img.shields.io/badge/Attack%20Simulation-Kali%20Linux-red)
+![IDS](https://img.shields.io/badge/IDS-Suricata-red)
 
 ---
 
 ## Lab Architecture
 
 ```text
-Windows 10 Virtual Machine
-          │
-          ▼
-       Sysmon
-(System Activity Monitoring)
-          │
-          ▼
- Windows Event Logs
-          │
-          ▼
-Splunk Universal Forwarder
-          │
-          ▼
-   Splunk Enterprise
-(Log Collection & Analysis)
+Diagram 1 — Endpoint Monitoring & Attack Simulation Workflow
+
+                Kali Linux VM
+            (Attack Simulation)
+                      │
+                      ▼
+              Windows Endpoint
+              (Monitored Host)
+                      │
+        ┌─────────────┴─────────────┐
+        │                           │
+        ▼                           ▼
+ Windows Security Logs          Sysmon Telemetry
+        │                           │
+        └─────────────┬─────────────┘
+                      │
+                      ▼
+          Splunk Universal Forwarder
+                      │
+                      ▼
+              Splunk Enterprise
+          (SIEM Detection & Analysis)
+
+
+─────────────────────────────────────
+Diagram 2 — Network Threat Hunting Workflow
+
+             Public PCAP Dataset
+                      │
+                      ▼
+          Wireshark + Suricata IDS
+                      │
+                      ▼
+          Network Traffic Analysis
 ```
 
 ---
 
 ## Components
 
-* Windows 10 Virtual Machine
-* Sysmon (Microsoft Sysinternals)
-* Windows Event Logs
-* Splunk Universal Forwarder
-* Splunk Enterprise
+| Component | Purpose |
+|-----------|---------|
+| Kali Linux Virtual Machine | Attack simulation and detection validation activities |
+| Windows Virtual Machine | Endpoint monitoring and investigation environment |
+| Sysmon | Detailed endpoint telemetry collection |
+| Windows Event Logs | Security and system event collection |
+| Splunk Universal Forwarder | Collects and forwards endpoint telemetry |
+| Splunk Enterprise | SIEM search, analysis, correlation, and detection development |
+| Suricata IDS | Network-based threat detection and alert analysis |
 
 ---
 
 ## Telemetry Collected
 
-The lab collects and analyzes multiple sources of Windows endpoint telemetry, including:
+The lab collects Windows security telemetry commonly used for SOC investigations, including:
 
-* Process Creation (Sysmon Event ID 1)
-* Network Connections (Sysmon Event ID 3)
-* File Creation Events
-* Windows Security Events (4624, 4625, etc.)
-* System and Application Logs
-
----
-
-## Data Flow
-
-1. User activity occurs on the Windows endpoint.
-2. Sysmon records detailed endpoint telemetry.
-3. Windows Event Logs store security and system events.
-4. Splunk Universal Forwarder forwards collected logs to Splunk Enterprise.
-5. Splunk indexes the data for searching, monitoring, and analysis.
+- Process execution events (Sysmon Event ID 1)
+- Network connections (Sysmon Event ID 3)
+- File activity (Sysmon Event ID 11)
+- Registry activity (Sysmon Event ID 13)
+- DNS queries (Sysmon Event ID 22)
+- Authentication events (Event ID 4624, 4625, 4672)
+- PowerShell Script Block Logging (Event ID 4104)
+- SMB access events (Event ID 5140, 5145)
 
 ---
 
-## Monitoring and Analysis Capabilities
+## Detection & Investigation Capabilities
 
-This lab provides a foundation for analyzing Windows endpoint activity, including:
+The SOC Home Lab supports:
 
-* Process execution monitoring
-* PowerShell activity analysis
-* Network connection monitoring
-* Authentication event analysis
-* Suspicious endpoint behavior investigation
-* SPL query development
+- **Endpoint Monitoring:** Process execution analysis, PowerShell investigation, Sysmon telemetry correlation, and suspicious activity analysis
+- **Security Monitoring:** Authentication analysis, RDP brute-force detection, Windows Event Log investigation, and SPL query development
+- **Network Analysis:** Traffic analysis, IDS alert investigation using Suricata, IOC validation, and security event correlation
+- **Detection Validation:** Controlled attack simulation, simulated security events, and detection query testing
 
 ---
 
 ## Skills Demonstrated
 
-* SIEM log analysis using Splunk
-* SPL (Search Processing Language)
-* Endpoint monitoring with Sysmon
-* Windows Event Log analysis
-* Log collection and forwarding
-* Security monitoring
-* Threat detection fundamentals
+- **SIEM & Log Analysis:** Splunk monitoring, SPL queries, Windows Event Logs, and security event investigation
+- **Endpoint Security:** Sysmon telemetry analysis, process investigation, PowerShell analysis, and threat detection
+- **Network Security Monitoring:** PCAP analysis, Suricata IDS alerts, network traffic investigation, and IOC analysis
+- **SOC Operations:** Alert triage, attack simulation, detection development, and incident investigation workflows
 
 ---
 
-## Related Projects
+## Related Investigations
 
-This home lab demonstrates the SOC monitoring environment and SIEM skills used alongside my investigation projects.
+The SOC Home Lab environment was used for the following portfolio investigations:
 
-Investigation case studies are documented separately in the SOC Investigation Portfolio repository and may use controlled training environments, public datasets, and Windows Event Log (`.evtx`) analysis.
+- RDP Brute Force Detection
+- PowerShell Post-Compromise Investigation
+- Network Threat Hunting Investigation
+
+Additional SOC investigations in the portfolio were completed using security labs and publicly available datasets.
 
 ---
 
 ## Summary
 
-This SOC Home Lab demonstrates the deployment of a centralized Windows logging and monitoring environment using Splunk, Sysmon, and the Splunk Universal Forwarder.
-
-The project showcases practical experience with endpoint telemetry collection, SIEM operations, SPL queries, dashboard creation, and security monitoring in a simulated SOC environment.
+This SOC Home Lab demonstrates practical experience building and operating a Windows-based monitoring environment, collecting security telemetry, simulating attacker activity, analyzing IDS alerts, investigating suspicious behavior, developing detection queries, and performing SOC analyst workflows using industry-standard security tools.
