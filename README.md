@@ -135,6 +135,18 @@ Additional SOC investigations in the portfolio were completed using security lab
 
 ---
 
+## Repository Contents
+
+This repository includes supporting resources used throughout the SOC Home Lab:
+
+| Directory | Purpose |
+|-----------|---------|
+| Architecture | Lab architecture diagram and environment overview |
+| Screenshots | Visual documentation of the lab setup, Sysmon configuration, Splunk Universal Forwarder, data ingestion, SPL searches, and dashboard validation |
+| SPL Queries | Reusable Splunk Search Processing Language (SPL) query library for Windows endpoint monitoring, Sysmon telemetry analysis, threat hunting, and SOC investigations |
+
+---
+
 ## Summary
 
 This SOC Home Lab demonstrates practical experience building and operating a Windows-based monitoring environment, collecting security telemetry, simulating attacker activity, analyzing IDS alerts, investigating suspicious behavior, developing detection queries, and performing SOC analyst workflows using industry-standard security tools.
